@@ -1,62 +1,76 @@
 import { useState, useContext } from "react";
-// import { AuthContext } from "../context/auth-context";
+import { AuthContext } from "../context/auth-context";
+import { useForm } from "../hooks/form-hooks";
+import Input from "../components/FormElements/Input";
+import { VALIDATOR_EMAIL, VALIDATOR_MINLENGTH } from "../util/validators";
 
-const Auth = props => {
+import "./Auth.css";
 
+const Auth = (props) => {
   // object from authcontext
-  // const auth = useContext(AuthContext);
+  const auth = useContext(AuthContext);
+
+  const [formState, inputHandler] = useForm(
+    {
+      email: {
+        value: "",
+        isValid: false,
+      },
+      password: {
+        value: "",
+        isValid: false,
+      },
+    },
+    false
+  );
 
   const [isLoginMode, setIsLoginMode] = useState(true);
 
-  const [userInput, setUserInput] = useState({
-    email: "",
-    password: ""
-  });
-  // const [inputContent, setInputContent] = useState("");
-
-  const handleChange = (event) => {
-    // console.log(event.target.value);
-    const { value, name } = event.target;
-
-    setUserInput(prevInput => ({
-      ...prevInput,
-      [name]: value
-    }));
-  };
-
-
   const switchModeHandler = () => {
-    setIsLoginMode(prevMode => !prevMode);
+    setIsLoginMode((prevMode) => !prevMode);
   };
 
   const authSubmitHandler = (event) => {
-    console.log("entered");
+    // console.log(formState.inputs);
     event.preventDefault();
     // auth.login();
     // console.log(auth.isLoggedIn);
   };
 
   return (
-    <form onSubmit={authSubmitHandler}>
-      <input 
-        type="email" 
-        placeholder="Email"
-        name="email"
-        value={userInput.email}
-        onChange={handleChange}
-        required
-      />
-      <input 
-        type="password"
-        placeholder="Password"
-        name="password"
-        value={userInput.password}
-        onChange={handleChange}
-        required
-      />
-      <button type="submit">{isLoginMode ? "Log in" : "Sign up"}</button>
-      <p>{isLoginMode ? "Don't have an account? " : "Already have an account? "} <button onClick={switchModeHandler}>{isLoginMode ? "Sign up" : "Log in"}</button></p>
-    </form>
+    <div className="authentication">
+      <form onSubmit={authSubmitHandler}>
+        <Input
+          className="form-control"
+          element="input"
+          id="email"
+          type="email"
+          placeholder="Email"
+          onInput={inputHandler}
+          validators={[VALIDATOR_EMAIL]}
+          errorText="Please enter a valid email"
+        />
+        <Input
+          className="form-control"
+          element="input"
+          id="password"
+          type="password"
+          placeholder="Password"
+          onInput={inputHandler}
+          validators={[VALIDATOR_MINLENGTH(6)]}
+          errorText="Password should be atleast 6 characters"
+        />
+        <button type="submit" disabled={!formState.isValid}>
+          {isLoginMode ? "Log in" : "Sign up"}
+        </button>
+      </form>
+      <p>
+        {isLoginMode ? "Don't have an account? " : "Already have an account? "}{" "}
+        <button onClick={switchModeHandler}>
+          {isLoginMode ? "Sign up" : "Log in"}
+        </button>
+      </p>
+    </div>
   );
 };
 

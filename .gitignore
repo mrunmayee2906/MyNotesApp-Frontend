@@ -23,4 +23,4 @@ yarn-debug.log*
 yarn-error.log*
 
 # custom files
-/src/components/NewNotUsingFormHook.js
+/src/components/NewNoteUsingFormHook.js

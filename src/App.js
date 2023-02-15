@@ -1,41 +1,76 @@
 // import logo from './logo.svg';
 // import './App.css';
-// to setup routing 
-// use this moving forward since v6.4
 import { useCallback, useState } from "react";
-import { RouterProvider } from "react-router-dom";
-import Router from "./Router";
-// import { AuthContext } from "./context/auth-context";
-
+// to setup routing
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  Navigate,
+} from "react-router-dom";
+// import Router from "./Router";
+import Auth from "./pages/Auth";
+import User from "./pages/User";
+import ErrorPage from "./pages/ErrorPage";
+import { AuthContext } from "./context/auth-context";
 
 const App = () => {
+  // const router = Router();
 
-  const router = Router();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  // const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const login = useCallback(() => {
+    // console.log("Entered login callback");
+    setIsLoggedIn(true);
+    // console.log(isLoggedIn);
+  }, []);
 
-  // const login = useCallback(() => {
-  //   console.log("Entered login callback");
-  //   setIsLoggedIn(prevLoggedIn => (true));
-  //   console.log(isLoggedIn);
-  // }, []);
+  const logout = useCallback(() => {
+    setIsLoggedIn(false);
+  }, []);
 
-  // const logout = useCallback(() => {
-  //   setIsLoggedIn(prevLoggedIn => (false));
-  // }, []);
+  let routes;
+
+  if (isLoggedIn) {
+    routes = (
+      <Routes>
+        <Route path="/" element={<User />} errorElement={<ErrorPage />} />
+        <Route
+          path="/auth"
+          element={<Navigate to="/" />}
+          errorElement={<ErrorPage />}
+        />
+        <Route
+          path="*"
+          element={<Navigate to="/auth" />}
+          errorElement={<ErrorPage />}
+        />
+      </Routes>
+    );
+  } else {
+    routes = (
+      <Routes>
+        <Route path="/auth" element={<Auth />} errorElement={<ErrorPage />} />
+        <Route
+          path="*"
+          element={<Navigate to="/auth" />}
+          errorElement={<ErrorPage />}
+        />
+      </Routes>
+    );
+  }
 
   return (
-    // <div>
-    //   <h1>MyNotes App</h1>
-    // </div>
-    // <AuthContext.Provider value={{
-    //   isLoggedIn: isLoggedIn, 
-    //   login: login, 
-    //   logout: logout
-    // }}>
-      <RouterProvider router={router} />
-    // </AuthContext.Provider>
+    <AuthContext.Provider
+      value={{
+        isLoggedIn: isLoggedIn,
+        login: login,
+        logout: logout,
+      }}
+    >
+      <Router>{routes}</Router>
+    </AuthContext.Provider>
   );
-}
+};
 
 export default App;

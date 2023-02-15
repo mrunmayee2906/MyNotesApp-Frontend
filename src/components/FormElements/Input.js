@@ -80,7 +80,7 @@ const Input = (props) => {
   return (
     // to add dynamic class for different input types
     <div
-      className={`${props.formControl} ${
+      className={`${props.className} ${
         // show invalid when input state is not valid and when it is touched
         !inputState.isValid && inputState.isTouched && "form-control--invalid"
       }`}
