@@ -2,7 +2,7 @@ import { useState } from "react";
 import MainNavigation from "../components/Navigation/MainNavigation";
 import Footer from "../components/Footer";
 import UserNote from "../components/UserNote";
-import CreateNoteArea from "../components/CreateNoteArea";
+import CreateNoteArea from "../components/NewNote";
 import "./User.css";
 
 const User = () => {
@@ -16,7 +16,7 @@ const User = () => {
     // console.log(inputNote === {title: "", content: ""});
     // add note only when the title or content are not empty
     if (inputNote.title !== "" || inputNote.content !== "") {
-      setNotes(prevNotes => [inputNote, ...prevNotes]);
+      setNotes((prevNotes) => [inputNote, ...prevNotes]);
     }
     // to prevent the page from reloading when we click the button
 
@@ -48,6 +48,6 @@ const User = () => {
       <Footer />
     </div>
   );
-}
+};
 
 export default User;

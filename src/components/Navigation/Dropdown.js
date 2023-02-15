@@ -36,7 +36,7 @@ toggle between hiding and showing the dropdown content */
     <div className="dropdown">
       <button onClick={onClickHandler} className="drop-btn">AT</button>
       <div className="dropdown-content" style={{display: buttonToggle ? "block" : "none"}}>
-        <Link to="/">Log out</Link>
+        <Link to="/auth">Log out</Link>
       </div>
     </div>
   );
