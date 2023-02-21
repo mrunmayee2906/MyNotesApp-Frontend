@@ -17,21 +17,30 @@ import { AuthContext } from "./context/auth-context";
 const App = () => {
   // const router = Router();
 
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  // const [isLoggedIn, setIsLoggedIn] = useState(false);
+  // we'll check the token, instead of isLoggedIn
+  const [token, setToken] = useState(false);
+  const [userID, setUserID] = useState(null); //keep track of current user
 
-  const login = useCallback(() => {
+  const login = useCallback((uid, token) => {
     // console.log("Entered login callback");
-    setIsLoggedIn(true);
+    // setIsLoggedIn(true);
+    setToken(token); // using the token value to determine if loggedin or not
     // console.log(isLoggedIn);
+    setUserID(uid);
   }, []);
 
   const logout = useCallback(() => {
-    setIsLoggedIn(false);
+    // setIsLoggedIn(false);
+    setToken(null);
+    setUserID(null);
   }, []);
 
   let routes;
 
-  if (isLoggedIn) {
+  // if (isLoggedIn) {
+  if (token) {
+    //using token to authenticate
     routes = (
       <Routes>
         <Route path="/" element={<User />} errorElement={<ErrorPage />} />
@@ -42,7 +51,7 @@ const App = () => {
         />
         <Route
           path="*"
-          element={<Navigate to="/auth" />}
+          element={<Navigate to="/" />}
           errorElement={<ErrorPage />}
         />
       </Routes>
@@ -63,7 +72,9 @@ const App = () => {
   return (
     <AuthContext.Provider
       value={{
-        isLoggedIn: isLoggedIn,
+        isLoggedIn: !!token, // to convert to boolean
+        token: token, // as we'll need the token when we send reusts
+        userID: userID,
         login: login,
         logout: logout,
       }}
