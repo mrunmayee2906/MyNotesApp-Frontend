@@ -25,4 +25,4 @@ yarn-debug.log*
 yarn-error.log*
 
 # custom files
-/src/components/NewNoteUsingFormHook.js
+src/components/NewNoteUsingFormHook.js
