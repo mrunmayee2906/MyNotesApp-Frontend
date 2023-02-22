@@ -1,6 +1,6 @@
 // import logo from './logo.svg';
 // import './App.css';
-import { useCallback, useState } from "react";
+// import { useCallback, useEffect, useState } from "react";
 // to setup routing
 import {
   BrowserRouter as Router,
@@ -9,36 +9,21 @@ import {
   Navigate,
 } from "react-router-dom";
 // import Router from "./Router";
+import { useState } from "react";
 import Auth from "./pages/Auth";
 import User from "./pages/User";
 import ErrorPage from "./pages/ErrorPage";
 import { AuthContext } from "./context/auth-context";
+import { useAuth } from "./hooks/auth-hook";
 
 const App = () => {
   // const router = Router();
+  const { token, login, logout, userID } = useAuth();
 
-  // const [isLoggedIn, setIsLoggedIn] = useState(false);
-  // we'll check the token, instead of isLoggedIn
-  const [token, setToken] = useState(false);
-  const [userID, setUserID] = useState(null); //keep track of current user
-
-  const login = useCallback((uid, token) => {
-    // console.log("Entered login callback");
-    // setIsLoggedIn(true);
-    setToken(token); // using the token value to determine if loggedin or not
-    // console.log(isLoggedIn);
-    setUserID(uid);
-  }, []);
-
-  const logout = useCallback(() => {
-    // setIsLoggedIn(false);
-    setToken(null);
-    setUserID(null);
-  }, []);
+  const [userInitials, setUserInitials] = useState();
 
   let routes;
 
-  // if (isLoggedIn) {
   if (token) {
     //using token to authenticate
     routes = (
@@ -75,6 +60,10 @@ const App = () => {
         isLoggedIn: !!token, // to convert to boolean
         token: token, // as we'll need the token when we send reusts
         userID: userID,
+        // initials: {
+        userInitials: userInitials,
+        setUserInitials: setUserInitials,
+        // },
         login: login,
         logout: logout,
       }}

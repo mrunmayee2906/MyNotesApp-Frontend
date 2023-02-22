@@ -46,7 +46,7 @@ const Auth = (props) => {
     if (isLoginMode) {
       try {
         const responseData = await sendRequest(
-          "http://localhost:5000/api/users/login",
+          `${process.env.REACT_APP_BACKEND_URL}/users/login`,
           "POST",
           // headers attached to the outgoing reuest
           JSON.stringify({
@@ -60,6 +60,8 @@ const Auth = (props) => {
           }
         );
 
+        auth.setUserInitials(formState.inputs.email.value.slice(0, 1));
+        console.log(auth.userInitials);
         // in the backend we send the response which contains the user object
         // we can extract the userID from the user object here and use in the auth-context to pass this info to every component that requires userID
         // console.log(responseData);
@@ -70,7 +72,7 @@ const Auth = (props) => {
     } else {
       try {
         const responseData = await sendRequest(
-          "http://localhost:5000/api/users/signup",
+          `${process.env.REACT_APP_BACKEND_URL}/users/signup`,
           "POST",
           // headers attached to the outgoing reuest
           JSON.stringify({
@@ -83,6 +85,8 @@ const Auth = (props) => {
             Authorization: `Bearer + ${auth.token}`,
           }
         );
+
+        auth.setUserInitials(formState.inputs.email.value.slice(0, 1));
 
         auth.login(responseData.userID, responseData.token);
       } catch (error) {

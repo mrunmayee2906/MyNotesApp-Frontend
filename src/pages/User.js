@@ -25,7 +25,7 @@ const User = () => {
       // console.log(auth);
       try {
         const responseData = await sendRequest(
-          `http://localhost:5000/api/users/${auth.userID}`,
+          `${process.env.REACT_APP_BACKEND_URL}/users/${auth.userID}`,
           "GET",
           null,
           {

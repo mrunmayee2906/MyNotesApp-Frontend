@@ -34,7 +34,7 @@ const NewNote = (props) => {
     if (inputNote.title !== "" || inputNote.content !== "") {
       try {
         await sendRequest(
-          `http://localhost:5000/api/users/${auth.userID}/notes`,
+          `${process.env.REACT_APP_BACKEND_URL}/users/${auth.userID}/notes`,
           "POST",
           JSON.stringify({
             title: inputNote.title,

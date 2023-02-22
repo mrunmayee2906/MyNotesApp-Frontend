@@ -15,6 +15,7 @@ toggle between hiding and showing the dropdown content */
     setButtonToggle((prevValue) => !prevValue);
     // console.log(buttonToggle);
     // document.getElementById("myDropdown").classList.toggle("show");
+    console.log(auth.userInitials);
   };
 
   // Close the dropdown menu if the user clicks outside of it
@@ -51,7 +52,7 @@ toggle between hiding and showing the dropdown content */
             className="drop-btn"
             onClick={onClickHandler}
           >
-            AT
+            {auth.userInitials}
           </button>
           <ul
             className="dropdown-content"

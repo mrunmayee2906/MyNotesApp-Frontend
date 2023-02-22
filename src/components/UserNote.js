@@ -18,7 +18,7 @@ const UserNote = (props) => {
     // console.log(addNote);
     try {
       await sendRequest(
-        `http://localhost:5000/api/users/${auth.userID}/notes/${props.id}`,
+        `${process.env.REACT_APP_BACKEND_URL}/users/${auth.userID}/notes/${props.id}`,
         "DELETE",
         null,
         {
