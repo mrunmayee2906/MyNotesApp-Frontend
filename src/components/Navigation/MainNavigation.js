@@ -1,16 +1,13 @@
-import { Link } from "react-router-dom";
 import MainHeader from "./MainHeader";
 import Dropdown from "./Dropdown";
+import Logo from "./Logo";
 
 import "./MainNavigation.css";
 
 const MainNavigation = (props) => {
   return (
     <MainHeader>
-      <h1 className="main-navigation__title">
-        {/* Link is like href, on clicking this we will be taken to the home route, specified by the to property */}
-        <Link to="/">MyNotes</Link>
-      </h1>
+      <Logo />
       <nav className="main-navigation__header-nav">
         <Dropdown />
       </nav>

@@ -1,15 +1,35 @@
-.authentication__header {
-  color: white;
-  text-align: center;
-}
-
 .authentication {
+  height: 100vh;
+  background: linear-gradient(135deg, rgb(255, 255, 255), rgb(205, 98, 255));
+}
+
+.authentication__header {
+  display: flex;
+  padding: 20px;
+}
+
+.authentication__container {
+  background-color: #fff;
+  border-radius: 5px;
   width: 90%;
-  max-width: 25rem;
+  max-width: 23rem;
   margin: 7rem auto;
+  padding: 20px;
   text-align: center;
 }
 
-.authentication form {
+.authentication__container .form-wrap {
+  display: flex;
+  flex-direction: column;
+
   margin-bottom: 1rem;
+}
+
+.authentication__container .form-wrap .form-group {
+  width: 100%;
+  border-radius: 15px;
+}
+
+.authentication__container .form__footer {
+  position: inherit;
 }

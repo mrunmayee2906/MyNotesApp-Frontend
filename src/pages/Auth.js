@@ -3,10 +3,11 @@ import { AuthContext } from "../context/auth-context";
 import { useForm } from "../hooks/form-hook.js";
 import { useHttpClient } from "../hooks/http-hook";
 import Input from "../components/FormElements/Input";
+import Button from "../components/UIElements/Button";
 import ErrorModal from "../components/UIElements/ErrorModal";
 import LoadingSpinner from "../components/UIElements/LoadingSpinner";
 import { VALIDATOR_EMAIL, VALIDATOR_MINLENGTH } from "../util/validators";
-
+import Logo from "../components/Navigation/Logo";
 import "./Auth.css";
 
 const Auth = (props) => {
@@ -97,49 +98,58 @@ const Auth = (props) => {
 
   return (
     <React.Fragment>
-      {/* passing the error state to the error modal component to diplay if there is any error */}
-      <ErrorModal error={error} onClear={clearError} />
-      {/* {createPortal(
-        <p>This is an error</p>,
-        document.getElementById("modal-hook")
-      )} */}
       <div className="authentication">
-        {isLoading && <LoadingSpinner asOverlay />}
-        <form onSubmit={authSubmitHandler}>
-          <Input
-            className="form-control"
-            element="input"
-            id="email"
-            type="email"
-            placeholder="Email"
-            onInput={inputHandler}
-            validators={[VALIDATOR_EMAIL()]}
-            errorText="Please enter a valid email"
-            initialIsValid={false}
-          />
-          <Input
-            className="form-control"
-            element="input"
-            id="password"
-            type="password"
-            placeholder="Password"
-            onInput={inputHandler}
-            validators={[VALIDATOR_MINLENGTH(6)]}
-            errorText="Password should be atleast 6 characters"
-            initialIsValid={false}
-          />
-          <button type="submit" disabled={!formState.isValid}>
-            {isLoginMode ? "Log in" : "Sign up"}
-          </button>
-        </form>
-        <p>
-          {isLoginMode
-            ? "Don't have an account? "
-            : "Already have an account? "}{" "}
-          <button onClick={switchModeHandler}>
-            {isLoginMode ? "Sign up" : "Log in"}
-          </button>
-        </p>
+        <ErrorModal error={error} onClear={clearError} />
+
+        <header className="authentication__header">
+          <Logo />
+        </header>
+        <div className="authentication__container">
+          {isLoading && <LoadingSpinner asOverlay />}
+          <div className="form-wrap">
+            <form onSubmit={authSubmitHandler}>
+              <Input
+                className="form-control"
+                element="input"
+                id="email"
+                type="email"
+                placeholder="Email"
+                onInput={inputHandler}
+                validators={[VALIDATOR_EMAIL()]}
+                errorText="Please enter a valid email"
+                initialIsValid={false}
+              />
+              <Input
+                className="form-control"
+                element="input"
+                id="password"
+                type="password"
+                placeholder="Password"
+                onInput={inputHandler}
+                validators={[VALIDATOR_MINLENGTH(6)]}
+                errorText="Password should be atleast 6 characters"
+                initialIsValid={false}
+              />
+              <Button
+                type="submit"
+                disabled={!formState.isValid}
+                text={isLoginMode ? "Log in" : "Sign up"}
+              />
+            </form>
+          </div>
+          <footer className="form__footer">
+            <p>
+              {isLoginMode
+                ? "Don't have an account? "
+                : "Already have an account? "}{" "}
+              <Button
+                onClick={switchModeHandler}
+                text={isLoginMode ? "Sign up" : "Log in"}
+              />
+            </p>
+          </footer>
+        </div>
+        <footer>Copyright &copy; NotesApp 2023</footer>
       </div>
     </React.Fragment>
   );
