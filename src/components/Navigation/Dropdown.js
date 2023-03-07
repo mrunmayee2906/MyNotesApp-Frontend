@@ -13,37 +13,18 @@ const Dropdown = (props) => {
     /* When the user clicks on the button,
 toggle between hiding and showing the dropdown content */
     setButtonToggle((prevValue) => !prevValue);
-    // console.log(buttonToggle);
-    // document.getElementById("myDropdown").classList.toggle("show");
-    console.log(auth.userInitials);
+    console.log(auth);
   };
 
   // Close the dropdown menu if the user clicks outside of it
   window.onclick = function (event) {
     if (!event.target.matches(".drop-btn")) {
-      // var dropdowns = document.getElementsByClassName("dropdown-content");
-      // var i;
-      // for (i = 0; i < dropdowns.length; i++) {
-      //   var openDropdown = dropdowns[i];
-      //   if (openDropdown.classList.contains('show')) {
-      //     openDropdown.classList.remove('show');
-      //   }
-      // }
       setButtonToggle(false);
     }
   };
 
   return (
     <div className="dropdown">
-      {/* <button onClick={onClickHandler} className="drop-btn">
-        AT
-      </button>
-      <div
-        className="dropdown-content"
-        style={{ display: buttonToggle ? "block" : "none" }}
-      >
-        <Link to="/auth">Log out</Link>
-      </div> */}
       <ul className="dropdown-menu">
         <li className="dropdown-menu-items">
           <button

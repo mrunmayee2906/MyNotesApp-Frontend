@@ -62,7 +62,7 @@ const Auth = (props) => {
         );
 
         auth.setUserInitials(formState.inputs.email.value.slice(0, 1));
-        console.log(auth.userInitials);
+        // console.log(auth.userInitials);
         // in the backend we send the response which contains the user object
         // we can extract the userID from the user object here and use in the auth-context to pass this info to every component that requires userID
         // console.log(responseData);
