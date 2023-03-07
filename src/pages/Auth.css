@@ -1,5 +1,6 @@
 .authentication {
   background: linear-gradient(135deg, rgb(255, 255, 255), rgb(205, 98, 255));
+  min-height: 100vh;
 }
 
 .authentication__header {
