@@ -1,6 +1,7 @@
 .create-note {
   position: relative;
-  width: 480px;
+  flex: 1;
+  max-width: 480px;
   margin: 6rem auto 20px auto;
   background: #fff;
   padding: 15px;
@@ -18,7 +19,7 @@
 }
 
 .create-note input {
-  font-size: 1.1em;
+  font-size: 1.1rem;
   font-weight: 600;
 }
 
@@ -54,16 +55,15 @@
 
 @media (max-width: 768px) {
   .create-note {
-    width: fit-content;
-    margin-left: 8%;
-    margin-right: 8%;
+    max-width: 480px;
+    padding: 15px;
   }
 
   .create-note input {
     font-size: 1em;
     font-weight: 600;
   }
-  
+
   .create-note textarea {
     font-size: 0.8em;
     font-weight: 500;

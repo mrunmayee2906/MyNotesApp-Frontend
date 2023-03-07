@@ -19,7 +19,7 @@
   font: inherit;
   border: none;
   border-bottom: 1px solid #ccc;
-  border-radius: 5px;
+  /* border-radius: 5px; */
   /* background: #f8f8f8; */
   padding: 0.5rem 0.5rem;
 }
@@ -43,5 +43,5 @@
 .form-control--invalid input,
 .form-control--invalid textarea {
   border-color: rgb(255, 61, 61);
-  background: #ffd1d1;
+  background: #ffe3e3;
 }

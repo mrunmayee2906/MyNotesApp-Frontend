@@ -19,7 +19,6 @@ const NewNote = (props) => {
   });
 
   const handleChange = (event) => {
-    // console.log(event.target.value);
     const { value, name } = event.target;
 
     setInputNote((prevNote) => ({
@@ -58,7 +57,6 @@ const NewNote = (props) => {
         title: "",
         content: "",
       });
-      // navigate("/", { replace: true });
       navigate("/");
     }
   };
@@ -67,23 +65,8 @@ const NewNote = (props) => {
     <React.Fragment>
       <ErrorModal error={error} onClear={clearError} />
       {isLoading && <LoadingSpinner asOverlay />}
-      <div>
-        {/* set a callback for submit, which takes the current note as input */}
-        <form
-          className="create-note"
-          // onSubmit={(event) => {
-          //   props.onSubmit(event, inputNote);
-          //   setInputNote({
-          //     title: "",
-          //     content: "",
-          //   });
-          // }}
-          onSubmit={noteSubmitHandler}
-          // onSubmit={(event) => {
-          //   noteSubmitHandler(event);
-          //   props.onAdd(true);
-          // }}
-        >
+      <div className="create-note">
+        <form onSubmit={noteSubmitHandler}>
           <input
             name="title"
             placeholder="Title"

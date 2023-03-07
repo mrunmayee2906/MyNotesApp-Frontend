@@ -4,7 +4,6 @@
 }
 
 .main-navigation__title a {
-  /* for the anchor tag */
   text-decoration: none;
   color: rgba(0, 0, 0, 0.6);
 }

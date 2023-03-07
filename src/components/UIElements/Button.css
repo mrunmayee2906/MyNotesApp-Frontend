@@ -6,3 +6,7 @@
   cursor: pointer;
   color: #fff;
 }
+
+.btn:hover {
+  background-color: #c445ff;
+}

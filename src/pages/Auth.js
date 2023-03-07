@@ -149,7 +149,9 @@ const Auth = (props) => {
             </p>
           </footer>
         </div>
-        <footer>Copyright &copy; NotesApp 2023</footer>
+        <footer>
+          <p>Copyright &copy; NotesApp 2023</p>
+        </footer>
       </div>
     </React.Fragment>
   );

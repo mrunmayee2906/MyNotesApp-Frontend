@@ -11,18 +11,14 @@ import "./User.css";
 
 const User = () => {
   const auth = useContext(AuthContext);
-  // console.log(auth.token);
   // state to store the notes
   const [notes, setNotes] = useState([]);
-  // const [addNote, setAddNote] = useState(false);
 
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
 
   // to prevent re-renders
   useEffect(() => {
     const fetchNotes = async () => {
-      // console.log(addNote);
-      // console.log(auth);
       try {
         const responseData = await sendRequest(
           `${process.env.REACT_APP_BACKEND_URL}/users/${auth.userID}`,
@@ -34,9 +30,7 @@ const User = () => {
         );
 
         setNotes(responseData.notes);
-      } catch (err) {
-        // console.log(err);
-      }
+      } catch (err) {}
     };
 
     fetchNotes();
@@ -58,11 +52,11 @@ const User = () => {
   return (
     <React.Fragment>
       <ErrorModal error={error} onClear={clearError} />
-      {isLoading && <LoadingSpinner asOverlay />}
-      <div>
+      <div className="user-container">
         <MainNavigation />
-        {/* <NewNote onSubmit={addNote} /> */}
-        <NewNote onAdd={addNoteToUI} />
+        <div className="new-note">
+          <NewNote onAdd={addNoteToUI} />
+        </div>
         <div className="notes-container">
           {notes.map((note) => (
             <UserNote

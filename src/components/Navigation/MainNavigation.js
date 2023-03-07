@@ -11,7 +11,6 @@ const MainNavigation = (props) => {
       <nav className="main-navigation__header-nav">
         <Dropdown />
       </nav>
-      {/* <hr /> */}
     </MainHeader>
   );
 };
