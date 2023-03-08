@@ -1,4 +1,5 @@
 import React, { useState, useContext } from "react";
+import { Link } from "react-router-dom";
 import { AuthContext } from "../context/auth-context";
 import { useForm } from "../hooks/form-hook.js";
 import { useHttpClient } from "../hooks/http-hook";
@@ -33,8 +34,6 @@ const Auth = (props) => {
   );
 
   const switchModeHandler = () => {
-    if (!isLoginMode) {
-    }
     setIsLoginMode((prevMode) => !prevMode);
   };
 
@@ -106,6 +105,7 @@ const Auth = (props) => {
         </header>
         <div className="authentication__container">
           {isLoading && <LoadingSpinner asOverlay />}
+          <h2>{isLoginMode ? "Welcome Back!" : "Create your account"}</h2>
           <div className="form-wrap">
             <form onSubmit={authSubmitHandler}>
               <Input
@@ -142,10 +142,9 @@ const Auth = (props) => {
               {isLoginMode
                 ? "Don't have an account? "
                 : "Already have an account? "}{" "}
-              <Button
-                onClick={switchModeHandler}
-                text={isLoginMode ? "Sign up" : "Log in"}
-              />
+              <Link onClick={switchModeHandler}>
+                {isLoginMode ? "Sign up" : "Log in"}
+              </Link>
             </p>
           </footer>
         </div>

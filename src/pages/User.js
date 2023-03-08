@@ -13,6 +13,8 @@ const User = () => {
   const auth = useContext(AuthContext);
   // state to store the notes
   const [notes, setNotes] = useState([]);
+  // state to refresh when new note is added
+  const [refresh, setRefresh] = useState(false);
 
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
 
@@ -34,14 +36,17 @@ const User = () => {
     };
 
     fetchNotes();
-  }, [sendRequest, auth.userID, auth.token]);
+  }, [sendRequest, auth.userID, auth.token, refresh]);
 
   // add note when clicked on add button
 
   const addNoteToUI = (inputNote) => {
-    if (inputNote.title !== "" || inputNote.content !== "") {
-      setNotes((prevNotes) => [inputNote, ...prevNotes]);
-    }
+    // if (inputNote.title !== "" || inputNote.content !== "") {
+    //   setNotes((prevNotes) => [inputNote, ...prevNotes]);
+    // }
+    // toggle the refersh value, and pass it as a dependency to the above useEffect to fetch the notes again
+    setRefresh((prevValue) => !prevValue);
+    // works!!!!!!!!!!!!!!!!
   };
 
   const deleteNote = (deletedPlaceId) => {
@@ -69,7 +74,7 @@ const User = () => {
           ))}
         </div>
 
-        <Footer />
+        <Footer className="user-footer" />
       </div>
     </React.Fragment>
   );

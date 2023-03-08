@@ -9,6 +9,7 @@
 }
 
 @media (min-width: 768px) {
+  /* for tablets, laptops */
   .main-navigation__title {
     font-size: 22px;
   }

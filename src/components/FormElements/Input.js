@@ -48,11 +48,20 @@ const Input = (props) => {
     });
   };
 
+  let inputLabel = "";
   // to not show the user validation error before even they had a chance to click on the element
   const touchHandler = () => {
-    dispatch({
-      type: "TOUCH",
-    });
+    // dispatch only when some input is entered and user has clicked elsewhere
+    if (value !== "") {
+      dispatch({
+        type: "TOUCH",
+      });
+    }
+  };
+
+  const focusHandler = () => {
+    // inputLabel = <p>{props.placeholder}</p>;
+    // console.log(props.placeholder);
   };
 
   // if we want input or textarea
@@ -64,6 +73,7 @@ const Input = (props) => {
         placeholder={props.placeholder}
         onChange={changeHandler}
         onBlur={touchHandler}
+        onFocus={focusHandler}
         value={inputState.val}
       />
     ) : (
@@ -86,6 +96,7 @@ const Input = (props) => {
       }`}
     >
       {/* for in HTML is htmlFor in JSX */}
+
       {element}
       {!inputState.isValid && inputState.isTouched && <p>{props.errorText}</p>}
     </div>

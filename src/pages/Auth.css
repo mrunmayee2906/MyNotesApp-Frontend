@@ -1,11 +1,16 @@
 .authentication {
-  background: linear-gradient(135deg, rgb(255, 255, 255), rgb(205, 98, 255));
+  /* background: linear-gradient(135deg, rgb(255, 255, 255), rgb(205, 98, 255)); */
+  background: #ffda8f22;
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .authentication__header {
-  display: flex;
-  padding: 20px;
+  /* display: flex; */
+  text-align: center;
+  padding: 50px 20px 20px;
 }
 
 .authentication__container {
@@ -15,19 +20,25 @@
   align-items: center;
   width: 90%;
   max-width: 23rem;
-  margin: 7rem auto;
+  margin: auto;
   padding: 20px;
   text-align: center;
 }
 
+.authentication__container h2 {
+  padding: 10px;
+  color: #333;
+}
+
 .authentication__container .form-wrap {
   padding: 30px;
-  border-radius: 5px;
+  border-radius: 10px;
   background-color: #fff;
   display: flex;
   flex-direction: column;
   margin-bottom: 1rem;
   width: 100%;
+  box-shadow: 0 0 5px #eee;
 }
 
 .authentication__container .form-wrap .form-group {
@@ -35,10 +46,32 @@
   border-radius: 15px;
 }
 
+.authentication__container .form-wrap button {
+  width: 100%;
+  margin-top: 10px;
+  /* border-radius: 15px; */
+}
+
 .authentication__container .form__footer {
   position: inherit;
 }
 
+.authentication__container .form__footer a {
+  text-decoration: none;
+  font-weight: 600;
+  padding: 5px;
+}
+
+.authentication__container .form__footer a:active {
+  text-decoration: none;
+  background-color: #eee;
+}
+
+.authentication__container .form__footer a:visited {
+  text-decoration: none;
+  color: #333;
+}
+
 .authentication__container .form__footer p {
-  color: #fff;
+  color: #333;
 }

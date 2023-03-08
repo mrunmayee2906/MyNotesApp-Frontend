@@ -1,3 +1,10 @@
+.user-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
 .new-note {
   display: flex;
   flex-direction: column;
@@ -11,4 +18,8 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
+}
+
+.user-container .user-footer {
+  align-self: flex-end;
 }
